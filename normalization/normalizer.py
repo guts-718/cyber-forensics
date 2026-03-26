@@ -18,6 +18,10 @@ def normalize_log(parsed, raw_log, detected_type, detection_conf):
         category = "authentication"
         action = "login"
         outcome = "success"
+    elif event_type == "block_operation":
+        category = "file_system"
+        action = "block_access"
+        outcome = "unknown"
     else:
         category = "unknown"
         action = "unknown"
@@ -56,19 +60,22 @@ def normalize_log(parsed, raw_log, detected_type, detection_conf):
         },
 
         "file": {
-            "path": None,
-            "action": None
+            "path": parsed.get("block_id"),
+            "action": None  
         },
 
         "network": {
             "protocol": parsed.get("protocol"),
-            "port": parsed.get("destination_port")
+            "source_port": parsed.get("source_port"),
+            "destination_port": parsed.get("destination_port")
         },
 
         "metadata": {
             "raw_log": raw_log,
             "parser": detected_type,
             "detection_confidence": detection_conf,
-            "parsing_confidence": parsed.get("confidence")
+            "parsing_confidence": parsed.get("confidence"),
+            "component": parsed.get("component"),
+            "log_level": parsed.get("level")
         }
     }

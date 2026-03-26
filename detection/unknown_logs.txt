@@ -9,3 +9,5 @@ INVALID LOG LINE HERE
 Random garbage log again
 INVALID LOG LINE HERE
 Random garbage log again
+INVALID LOG LINE HERE
+Random garbage log again

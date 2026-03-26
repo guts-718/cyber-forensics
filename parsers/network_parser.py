@@ -12,6 +12,7 @@ def parse_network_log(log):
         return None
 
     data = dict(pairs)
+    proto = data.get("PROTO")
 
     return {
         "event_type": "network_connection",
@@ -19,7 +20,7 @@ def parse_network_log(log):
         "destination_ip": data.get("DST"),
         "source_port": data.get("SPT"),
         "destination_port": data.get("DPT"),
-        "protocol": data.get("PROTO"),
+        "protocol" :proto.lower() if isinstance(proto, str) else None,
         "action": data.get("ACTION"),
         "message": log,
         "confidence": 0.90
