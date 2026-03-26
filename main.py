@@ -1,6 +1,8 @@
 from ingestion.reader import read_logs
 from detection.detector import detect_log_type, log_unknown
 from parsers.linux_auth import parse_linux_auth
+from normalization.normalizer import normalize_log
+
 
 def main():
     file_path = "data/sample.log"
@@ -17,12 +19,15 @@ def main():
         if detection["type"] == "linux_auth":
             parsed = parse_linux_auth(log["raw"])
 
-        print({
-            "line": log["line_number"],
-            "detected_type": detection["type"],
-            "parsed": parsed,
-            "raw": log["raw"]
-        })
+        normalized = normalize_log(
+            parsed,
+            raw_log=log["raw"],
+            detected_type=detection["type"],
+            detection_conf=detection["confidence"]
+        )
+
+        print(normalized)
+
 
 if __name__ == "__main__":
     main()
