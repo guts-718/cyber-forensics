@@ -32,3 +32,10 @@ def write_log(log, log_type):
     except Exception as e:
         # Fail-safe: don't crash pipeline
         print(f"[ERROR] Failed to write log: {e}")
+
+
+def write_raw_log(raw_log, filename="adapted_logs.txt"):
+    file_path = os.path.join(OUTPUT_DIR, filename)
+
+    with open(file_path, "a", encoding="utf-8") as f:
+        f.write(raw_log + "\n")

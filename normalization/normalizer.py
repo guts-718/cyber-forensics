@@ -33,7 +33,7 @@ def normalize_log(parsed, raw_log, detected_type, detection_conf):
         "message": parsed.get("message"),
         "timestamp": parsed.get("timestamp"),
         "source": "linux" if detected_type == "linux_auth" else "unknown",
-
+        "log_level": parsed.get("level"),
         "event": {
             "type": event_type,
             "category": category,
