@@ -76,6 +76,7 @@ def normalize_log(parsed, raw_log, detected_type, detection_conf):
             "detection_confidence": detection_conf,
             "parsing_confidence": parsed.get("confidence"),
             "component": parsed.get("component"),
-            "log_level": parsed.get("level")
+            "log_level": parsed.get("level"),
+            "label": parsed.get("label"),
         }
     }
