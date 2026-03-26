@@ -2,10 +2,11 @@ def normalize_log(parsed, raw_log, detected_type, detection_conf):
     """
     Converts parsed log into unified schema
     """
-
+    
     if not parsed:
         return None
 
+    
     # --- Event mapping ---
     event_type = parsed.get("event_type")
 
@@ -23,6 +24,9 @@ def normalize_log(parsed, raw_log, detected_type, detection_conf):
         outcome = "unknown"
 
     return {
+        "source_ip": parsed.get("source_ip"),
+        "destination_ip": parsed.get("destination_ip"),
+        "message": parsed.get("message"),
         "timestamp": parsed.get("timestamp"),
         "source": "linux" if detected_type == "linux_auth" else "unknown",
 
@@ -57,8 +61,8 @@ def normalize_log(parsed, raw_log, detected_type, detection_conf):
         },
 
         "network": {
-            "protocol": None,
-            "port": None
+            "protocol": parsed.get("protocol"),
+            "port": parsed.get("destination_port")
         },
 
         "metadata": {

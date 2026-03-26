@@ -23,6 +23,7 @@ def parse_linux_auth(log):
             "source_ip": match_failed.group(3),
             "process": "sshd",
             "status": "failed",
+            "message": log, 
             "confidence": 0.95
         }
 
@@ -34,6 +35,7 @@ def parse_linux_auth(log):
             "source_ip": match_success.group(3),
             "process": "sshd",
             "status": "success",
+            "message": log, 
             "confidence": 0.90
         }
 
@@ -42,6 +44,7 @@ def parse_linux_auth(log):
         return {
             "raw_partial": log,
             "event_type": "unknown_auth",
+            "message": log, 
             "confidence": 0.50
         }
 
