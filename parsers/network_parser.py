@@ -22,6 +22,7 @@ def parse_network_log(log):
         "destination_port": data.get("DPT"),
         "protocol" :proto.lower() if isinstance(proto, str) else None,
         "action": data.get("ACTION"),
+        "label": data.get("LABEL"),
         "message": log,
         "confidence": 0.90
     }

@@ -45,6 +45,9 @@ def adapt_row_to_log(row):
 
     if "Label" in row:
         parts.append(f"LABEL={row['Label']}")  # useful later
+    
+    if "Label" in row:
+        parts.append(f"LABEL={row['Label']}")
 
     # fallback (important)
     if not parts:

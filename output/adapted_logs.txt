@@ -1,1 +1,53 @@
 SRC=192.168.1.1 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 LABEL=Normal
+SRC=192.168.1.1 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 LABEL=Normal LABEL=Normal
+SRC=192.168.1.1 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 LABEL=Normal LABEL=Normal
+Oct 10 10:10:10 server sshd[123]: Failed password for root from 192.168.1.10
+Oct 10 10:12:15 server sshd[124]: Accepted password for user from 192.168.1.20
+INVALID LOG LINE HERE
+Oct 11 11:11:11 server kernel: CPU overload detected
+Oct 12 12:12:12 server systemd: Service started successfully
+Random garbage log again
+SRC=192.168.1.10 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 ACTION=ACCEPT
+SRC=192.168.1.11 DST=10.0.0.8 PROTO=UDP SPT=53 DPT=60000 ACTION=DROP
+081109 203518 143 INFO dfs.DataNode: Receiving block blk_12345
+081109 203520 144 WARN dfs.DataNode: Failed to process blk_67890
+Oct 10 10:10:10 server sshd[123]: Failed password for root from 192.168.1.10
+Oct 10 10:12:15 server sshd[124]: Accepted password for user from 192.168.1.20
+INVALID LOG LINE HERE
+Oct 11 11:11:11 server kernel: CPU overload detected
+Oct 12 12:12:12 server systemd: Service started successfully
+Random garbage log again
+SRC=192.168.1.10 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 ACTION=ACCEPT
+SRC=192.168.1.11 DST=10.0.0.8 PROTO=UDP SPT=53 DPT=60000 ACTION=DROP
+081109 203518 143 INFO dfs.DataNode: Receiving block blk_12345
+081109 203520 144 WARN dfs.DataNode: Failed to process blk_67890
+Oct 10 10:10:10 server sshd[123]: Failed password for root from 192.168.1.10
+Oct 10 10:12:15 server sshd[124]: Accepted password for user from 192.168.1.20
+INVALID LOG LINE HERE
+Oct 11 11:11:11 server kernel: CPU overload detected
+Oct 12 12:12:12 server systemd: Service started successfully
+Random garbage log again
+SRC=192.168.1.10 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 ACTION=ACCEPT
+SRC=192.168.1.11 DST=10.0.0.8 PROTO=UDP SPT=53 DPT=60000 ACTION=DROP
+081109 203518 143 INFO dfs.DataNode: Receiving block blk_12345
+081109 203520 144 WARN dfs.DataNode: Failed to process blk_67890
+Oct 10 10:10:10 server sshd[123]: Failed password for root from 192.168.1.10
+Oct 10 10:12:15 server sshd[124]: Accepted password for user from 192.168.1.20
+INVALID LOG LINE HERE
+Oct 11 11:11:11 server kernel: CPU overload detected
+Oct 12 12:12:12 server systemd: Service started successfully
+Random garbage log again
+SRC=192.168.1.10 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 ACTION=ACCEPT
+SRC=192.168.1.11 DST=10.0.0.8 PROTO=UDP SPT=53 DPT=60000 ACTION=DROP
+081109 203518 143 INFO dfs.DataNode: Receiving block blk_12345
+081109 203520 144 WARN dfs.DataNode: Failed to process blk_67890
+Oct 10 10:10:10 server sshd[123]: Failed password for root from 192.168.1.10
+Oct 10 10:12:15 server sshd[124]: Accepted password for user from 192.168.1.20
+INVALID LOG LINE HERE
+Oct 11 11:11:11 server kernel: CPU overload detected
+Oct 12 12:12:12 server systemd: Service started successfully
+Random garbage log again
+SRC=192.168.1.10 DST=10.0.0.5 PROTO=TCP SPT=443 DPT=51515 ACTION=ACCEPT
+SRC=192.168.1.11 DST=10.0.0.8 PROTO=UDP SPT=53 DPT=60000 ACTION=DROP
+081109 203518 143 INFO dfs.DataNode: Receiving block blk_12345
+081109 203520 144 WARN dfs.DataNode: Failed to process blk_67890

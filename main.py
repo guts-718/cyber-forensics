@@ -14,11 +14,12 @@ from parsers.generic_parser import parse_generic_log
 from ingestion.reader import read_logs
 from adapters.csv_adapter import read_csv_logs
 from storage.writer import write_raw_log
-
+from features.extractor import extract_features
+from detection.rule_engine import rule_based_detection
 
 def main():
-    # file_path = "data/sample.log" 
-    file_path="data/sample.csv"
+    file_path = "data/sample.log" 
+    # file_path="data/sample.csv"
 
 
     # --- Detect input type ---
@@ -75,6 +76,13 @@ def main():
         write_log(normalized, detection["type"])
         print(normalized)
 
+        features = extract_features(normalized)
+        print("EXTRACTED FEATURES:", features)
+
+        print("\n")
+        prediction=rule_based_detection(features)
+        print("DETECTION RESULT:", prediction)
+        print("\n")
 
 if __name__ == "__main__":
     main()
