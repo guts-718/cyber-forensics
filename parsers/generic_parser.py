@@ -1,5 +1,5 @@
 # extract something from every log.
-# without this - logs -> unknown -> waster
+# without this - logs -> unknown -> wasted
 # with this - even messy logs -> usable..
 import re
 

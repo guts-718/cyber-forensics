@@ -2,6 +2,8 @@ import re
 
 def detect_log_type(log, source_hint=None):
     text = log.lower()
+    print("DETECTING LOG TYPE FOR:", text[:80])
+    print("\n")
 
     # --- 1. Use dataset hint (strong signal) ---
     if source_hint == "hdfs":
@@ -18,11 +20,11 @@ def detect_log_type(log, source_hint=None):
         return {"type": "linux_auth", "confidence": 0.90}
 
     # --- 3. Network Logs ---
-    if "src=" in text or "dst=" in text:
+    if "src=" in text.lower() or "dst=" in text.lower():
         return {"type": "network", "confidence": 0.85}
 
     # --- 4. HDFS Logs ---
-    if "blk_" in text or "dfs" in text:
+    if "blk_" in text.lower() or "dfs" in text.lower():
         return {"type": "hdfs", "confidence": 0.80}
 
     # --- 5. Generic system logs ---

@@ -13,6 +13,9 @@ venv.bak/
 
 
 .ipynb_checkpoints/
+output/adapted_logs.txt
+output
+detection/unknown_logs.txt
 
 data/
 datasets/
@@ -21,6 +24,9 @@ datasets/
 *.jsonl
 *.parquet
 
+*.txt
+detection/
+output/
 
 models/
 checkpoints/
@@ -68,3 +74,7 @@ htmlcov/
 notes_for_me
 .venv
 data
+
+
+detection/unknown_logs.txt
+output/adapted_logs.txt

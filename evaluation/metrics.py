@@ -1,12 +1,8 @@
 def evaluate(predictions, labels):
-    """
-    Compute basic metrics
-    """
-
-    tp = sum(1 for p, l in zip(predictions, labels) if p == 1 and l == "Attack")
-    tn = sum(1 for p, l in zip(predictions, labels) if p == 0 and l == "Normal")
-    fp = sum(1 for p, l in zip(predictions, labels) if p == 1 and l == "Normal")
-    fn = sum(1 for p, l in zip(predictions, labels) if p == 0 and l == "Attack")
+    tp = sum(1 for p, l in zip(predictions, labels) if p == 1 and l == 1)
+    tn = sum(1 for p, l in zip(predictions, labels) if p == 0 and l == 0)
+    fp = sum(1 for p, l in zip(predictions, labels) if p == 1 and l == 0)
+    fn = sum(1 for p, l in zip(predictions, labels) if p == 0 and l == 1)
 
     precision = tp / (tp + fp + 1e-6)
     recall = tp / (tp + fn + 1e-6)

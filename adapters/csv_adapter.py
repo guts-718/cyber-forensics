@@ -1,16 +1,10 @@
 import csv
 
 def read_csv_logs(file_path):
-    """
-    Reads CSV and converts each row into a log-like string
-    """
-
     with open(file_path, newline='', encoding="utf-8", errors="ignore") as csvfile:
         reader = csv.DictReader(csvfile)
 
         for idx, row in enumerate(reader, start=1):
-
-            # --- Convert row → log string ---
             log = adapt_row_to_log(row)
 
             yield {
@@ -20,36 +14,38 @@ def read_csv_logs(file_path):
 
 
 def adapt_row_to_log(row):
-    """
-    Converts a CSV row into a log-like format
-    (customizable per dataset)
-    """
+    # normalize keys
+    row = {k.strip().lower(): v for k, v in row.items()}
 
     parts = []
 
-    # Common mappings (CICIDS-like datasets)
-    if "Src IP" in row:
-        parts.append(f"SRC={row['Src IP']}")
+    src_ip = row.get("src ip") or row.get("src ip dec")
+    dst_ip = row.get("dst ip") or row.get("dst ip dec")
 
-    if "Dst IP" in row:
-        parts.append(f"DST={row['Dst IP']}")
+    src_port = row.get("src port")
+    dst_port = row.get("dst port")
 
-    if "Protocol" in row:
-        parts.append(f"PROTO={row['Protocol']}")
+    protocol = row.get("protocol")
+    label = row.get("label")
 
-    if "Src Port" in row:
-        parts.append(f"SPT={row['Src Port']}")
+    if src_ip:
+        parts.append(f"SRC={src_ip}")
 
-    if "Dst Port" in row:
-        parts.append(f"DPT={row['Dst Port']}")
+    if dst_ip:
+        parts.append(f"DST={dst_ip}")
 
-    if "Label" in row:
-        parts.append(f"LABEL={row['Label']}")  # useful later
-    
-    if "Label" in row:
-        parts.append(f"LABEL={row['Label']}")
+    if protocol:
+        parts.append(f"PROTO={protocol}")
 
-    # fallback (important)
+    if src_port:
+        parts.append(f"SPT={src_port}")
+
+    if dst_port:
+        parts.append(f"DPT={dst_port}")
+
+    if label:
+        parts.append(f"LABEL={label}")
+
     if not parts:
         parts.append("RAW=" + " ".join([f"{k}={v}" for k, v in row.items()]))
 
