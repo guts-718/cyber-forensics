@@ -12,6 +12,8 @@ from detection.supervised_model import train_rf, predict_rf
 from evaluation.metrics import evaluate
 
 from sklearn.model_selection import train_test_split
+from explainability.explainer import explain_prediction
+import numpy as np
 
 
 def main():
@@ -20,11 +22,13 @@ def main():
     X = []
     labels = []
     rule_preds = []
+    all_features = []
 
     # --- Load logs ---
     for log in read_jsonl(file_path):
 
         features = extract_features(log)
+        all_features.append(features)
 
         label_raw = features.get("label")
         if label_raw is None:
@@ -79,6 +83,13 @@ def main():
     rf_model = train_rf(X_train, y_train)
     rf_preds = predict_rf(rf_model, X_test)
 
+    # --- Explain a few predictions ---
+    print("\nSample Explanations:\n")
+
+    for i in range(5):
+        explanation = explain_prediction(all_features[i], rf_preds[i])
+        print(f"Prediction: {rf_preds[i]} | Explanation: {explanation}")
+
     # --- Debug prediction sets ---
     print("\nPrediction Sets:")
     print("Rule:", set(rule_test_preds))
@@ -92,6 +103,29 @@ def main():
     print("Statistical:", evaluate(stat_preds, y_test))
     print("IsolationForest:", evaluate(ml_preds, y_test))
     print("RandomForest:", evaluate(rf_preds, y_test))
+
+    feature_names = [
+        "protocol",
+        "destination_port",
+        "event_type",
+        "has_ip",
+        "is_high_port",
+        "is_well_known_port",
+        "is_dns",
+        "is_ntp",
+        "is_mdns",
+        "is_udp",
+        "is_tcp"
+    ]
+
+    importances = rf_model.feature_importances_
+
+    # sort features
+    indices = np.argsort(importances)[::-1]
+
+    print("\nFeature Importance (Top Features):")
+    for i in indices[:10]:
+        print(f"{feature_names[i]}: {importances[i]:.4f}")
 
 
 if __name__ == "__main__":
